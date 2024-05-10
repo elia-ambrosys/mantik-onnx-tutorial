@@ -1,0 +1,10 @@
+name: train_keras_cnn_model
+
+python_env: python_env.yaml
+
+entry_points:
+  main:
+    parameters:
+      batch-size: {type: int, default: 100}
+      epochs: {type: int, default: 4}
+    command: python train.py --batch-size {batch-size} --epochs {epochs}

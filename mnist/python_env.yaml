@@ -1,0 +1,10 @@
+# Python version required to run the project.
+python: "3.8.13"
+# Dependencies required to build packages. This field is optional.
+build_dependencies:
+  - pip==23.3.1
+  - setuptools==68.2.2
+  - wheel==0.41.2
+## Dependencies required to run the project.
+dependencies:
+  - -r requirements.txt
