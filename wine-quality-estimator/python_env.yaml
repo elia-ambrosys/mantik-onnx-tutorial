@@ -9,3 +9,4 @@ dependencies:
   - skl2onnx
   - pandas
   - numpy
+  - onnxruntime
