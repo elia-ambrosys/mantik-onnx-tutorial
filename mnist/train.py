@@ -14,6 +14,8 @@ from keras.layers import MaxPooling2D
 from keras.models import Sequential
 import onnx
 import tf2onnx
+import tensorflow as tf
+
 
 class CustomCallback(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
@@ -108,7 +110,7 @@ if __name__ == "__main__":
 
     onnx_model_name = 'mnist.onnx'
 
-    onnx_model = tf2onnx.convert.from_keras(model, model.name)
+    onnx_model = tf2onnx.convert.from_keras(model, test_data[0])
     onnx.save_model(onnx_model, onnx_model_name)
 
     mlflow.onnx.load_model(onnx_model_name)
