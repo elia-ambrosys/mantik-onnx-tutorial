@@ -75,7 +75,5 @@ if __name__ == "__main__":
         onnx_model_name = 'wine-quality-estimator.onnx'
 
         onx = skl2onnx.to_onnx(lr, train_x[:1])
-        with open(onnx_model_name, "wb") as f:
-            f.write(onx.SerializeToString())
 
-        mlflow.onnx.load_model(onnx_model_name)
+        mlflow.onnx.log_model(onx, artifact_path=onnx_model_name)

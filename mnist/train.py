@@ -113,8 +113,6 @@ if __name__ == "__main__":
     input_signature = [tf.TensorSpec([1, 28, 28, 1], tf.float32, name='x')]
 
     onnx_model,_ = tf2onnx.convert.from_keras(model, input_signature)
-    onnx.save_model(onnx_model, onnx_model_name)
-
-    mlflow.onnx.log_model(onnx_model_name)
+    mlflow.onnx.log_model(onnx_model, artifact_path=onnx_model_name)
 
     logging.info(mlflow.active_run().info.run_uuid)
