@@ -13,7 +13,7 @@ from keras.layers import Flatten
 from keras.layers import MaxPooling2D
 from keras.models import Sequential
 import onnx
-import keras2onnx
+import tf2onnx
 
 class CustomCallback(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
     onnx_model_name = 'mnist.onnx'
 
-    onnx_model = keras2onnx.convert_keras(model, model.name)
+    onnx_model = tf2onnx.convert_keras(model, model.name)
     onnx.save_model(onnx_model, onnx_model_name)
 
     mlflow.onnx.load_model(onnx_model_name)
