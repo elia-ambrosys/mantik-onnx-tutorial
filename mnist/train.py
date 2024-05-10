@@ -110,7 +110,9 @@ if __name__ == "__main__":
 
     onnx_model_name = 'mnist.onnx'
 
-    onnx_model = tf2onnx.convert.from_keras(model, test_data[0])
+    input_signature = [tf.TensorSpec([28, 28], tf.float32, name='x')]
+
+    onnx_model = tf2onnx.convert.from_keras(model, input_signature)
     onnx.save_model(onnx_model, onnx_model_name)
 
     mlflow.onnx.load_model(onnx_model_name)
