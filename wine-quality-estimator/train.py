@@ -14,6 +14,7 @@ import sklearn.linear_model as linear_model
 import sklearn.metrics as metrics
 import sklearn.model_selection as model_selection
 import skl2onnx
+import skl2onnx.common.data_types
 
 def eval_metrics(actual, pred):
     rmse = np.sqrt(metrics.mean_squared_error(actual, pred))
@@ -74,6 +75,6 @@ if __name__ == "__main__":
 
         onnx_model_name = 'wine-quality-estimator.onnx'
 
-        onx = skl2onnx.to_onnx(lr)
+        onx = skl2onnx.convert_sklearn(lr, initial_types=[("x", skl2onnx.common.data_types.FloatTensorType((None, test_x.shape[1])))])
 
         mlflow.onnx.log_model(onx, artifact_path=onnx_model_name)
