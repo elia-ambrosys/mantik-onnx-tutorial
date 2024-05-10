@@ -108,7 +108,7 @@ if __name__ == "__main__":
     logging.info(f"Test loss: {score[0]}")
     logging.info(f"Test accuracy: {score[1]}")
 
-    onnx_model_name = 'mnist.onnx'
+    onnx_model_name = 'mnist2.onnx'
 
     input_signature = [tf.TensorSpec([1, 28, 28, 1], tf.float32, name='x')]
 
