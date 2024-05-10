@@ -4,7 +4,10 @@ import csv
 import pandas as pd
 
 def read_csv_file(file_path):
-    data = pd.read_csv(wine_path)
+    data = pd.read_csv(file_path)
+    x = data.drop(["quality"], axis=1)
+    y = data[["quality"]]
+    return x, y
 
 
 if __name__ == "__main__":
@@ -16,9 +19,9 @@ if __name__ == "__main__":
     # change this to predict other datapoints
 
     for predicted_data_point in range(20):
-        labels, test_data = read_csv_file(file_path)
+        test_data, labels = read_csv_file(file_path)
         ort_sess = ort.InferenceSession(onnx_model)
-        outputs = ort_sess.run(None, {"x": test_data[predicted_data_point]})
+        outputs = ort_sess.run(None, {"input": test_data[predicted_data_point]})
 
         predicted, actual = outputs[0][0].argmax(0), labels[predicted_data_point]
         print(f'Predicted: "{predicted}", Actual: "{actual}"')
