@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
     onnx_model_name = 'mnist.onnx'
 
-    onnx_model = tf2onnx.conver.from_keras(model, model.name)
+    onnx_model = tf2onnx.convert.from_keras(model, model.name)
     onnx.save_model(onnx_model, onnx_model_name)
 
     mlflow.onnx.load_model(onnx_model_name)
