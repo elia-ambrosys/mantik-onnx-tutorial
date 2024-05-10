@@ -115,6 +115,6 @@ if __name__ == "__main__":
     onnx_model,_ = tf2onnx.convert.from_keras(model, input_signature)
     onnx.save_model(onnx_model, onnx_model_name)
 
-    mlflow.onnx.load_model(onnx_model_name)
+    mlflow.onnx.log_model(onnx_model_name)
 
     logging.info(mlflow.active_run().info.run_uuid)
