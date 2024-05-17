@@ -77,4 +77,4 @@ if __name__ == "__main__":
 
         onx = skl2onnx.convert_sklearn(lr, initial_types=[("x", skl2onnx.common.data_types.FloatTensorType((None, test_x.shape[1])))])
 
-        mlflow.onnx.log_model(onx, artifact_path=onnx_model_name)
+        mlflow.onnx.log_model(onx, artifact_path=onnx_model_name, save_as_external_data=False)
