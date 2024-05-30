@@ -15,6 +15,7 @@ import sklearn.metrics as metrics
 import sklearn.model_selection as model_selection
 import skl2onnx
 import skl2onnx.common.data_types
+import logging
 
 def eval_metrics(actual, pred):
     rmse = np.sqrt(metrics.mean_squared_error(actual, pred))
@@ -62,10 +63,10 @@ if __name__ == "__main__":
 
         (rmse, mae, r2) = eval_metrics(test_y, predicted_qualities)
 
-        print("Elasticnet model (alpha=%f, l1_ratio=%f):" % (alpha, l1_ratio))
-        print("  RMSE: %s" % rmse)
-        print("  MAE: %s" % mae)
-        print("  R2: %s" % r2)
+        logging.warning("Elasticnet model (alpha=%f, l1_ratio=%f):" % (alpha, l1_ratio))
+        logging.warning("  RMSE: %s" % rmse)
+        logging.warning("  MAE: %s" % mae)
+        logging.warning("  R2: %s" % r2)
 
         mlflow.log_param("alpha", alpha)
         mlflow.log_param("l1_ratio", l1_ratio)
