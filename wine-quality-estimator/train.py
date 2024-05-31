@@ -16,6 +16,7 @@ import sklearn.model_selection as model_selection
 import skl2onnx
 import skl2onnx.common.data_types
 import logging
+import time
 
 def eval_metrics(actual, pred):
     rmse = np.sqrt(metrics.mean_squared_error(actual, pred))
@@ -62,7 +63,9 @@ if __name__ == "__main__":
         predicted_qualities = lr.predict(test_x)
 
         (rmse, mae, r2) = eval_metrics(test_y, predicted_qualities)
-
+        logging.warning("First warning")
+        time.sleep(5)
+        logging.warning("Second warning")
         print("Elasticnet model (alpha=%f, l1_ratio=%f):" % (alpha, l1_ratio))
         print("  RMSE: %s" % rmse)
         print("  MAE: %s" % mae)
@@ -73,6 +76,9 @@ if __name__ == "__main__":
         mlflow.log_metric("rmse", rmse)
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
+        
+        time.sleep(5)
+        logging.warning("Third warning")
 
         onnx_model_name = 'wine-quality-estimator.onnx'
 
